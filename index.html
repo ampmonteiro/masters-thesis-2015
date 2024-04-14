@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Thesis ISEP MEI-SGM AMPM">
+    <meta name="author" content="AMPM">
+
+    <title> Thesis of AMPM 2015- beta final </title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="js/jquery-ui/jquery-ui.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/custom.css" />
+    <link rel="stylesheet" href="css/range.css" />
+
+    <!--HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <header>
+        <nav id="nav2" class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a id="b5" class="navbar-brand" href="#" data-toggle="modal" data-target="#about" title="About">
+                        <iclass="fa fa-info-circle fa-2x"></i>
+                    </a>
+                    <!--Image source selection-->
+                    <a id="home" class="navbar-brand" href="#" title="Images" data-toggle="modal" data-target="#ls">
+                        <i class="fa fa-image fa-2x"></i></a>
+
+
+                    <input class="myZoom  hidden" type="range" min="0" max="2" step="0.1" value="1" />
+
+                    <div class="valZoom hidden"><span></span></div>
+
+                    <div class="feedback navbar-brand hidden">
+                        <a class="feed apl" href="#" title="Apply">
+                            <i class="fa fa-check fa-2x"></i>
+                        </a>
+                    </div>
+                    <div class="feedback navbar-brand hidden">
+                        <a class="feed rej" href="#" title="Cancel">
+                            <i class="fa fa-times fa-2x"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <!--Essencials -->
+                        <li class="menu essencials">
+                            <a id="menuEssencial" href="#essencials" data-toggle="tooltip" data-placement="right"
+                               title="Essencials">
+                                <i class="fa fa-wrench fa-2x"></i>
+                                <h5 class="hidden">Essencials</h5>
+                            </a>
+
+                        </li>
+                        <!--essencials properties-->
+                        <li class="essencials cp hidden">
+                            <a id="crp" href="#crop" title="Crop Tool" role="button">
+                                <iclass="fa fa-crop fa-2x"></i>
+                            </a>
+                        </li>
+                        <li class="previewCrp cp hidden">
+                            <a id="cropimg" href="#crop" data-toggle="modal" data-target="#cropModal"
+                               class="btn btn-sm">
+                                Preview Crop</a>
+
+                        </li>
+                        <li class="essencials hidden">
+                            <a id="rot" href="#rotate" title="Rotate counter-clockwise" role="button"><i
+                                   class="fa fa-undo fa-2x"></i></a>
+                        </li>
+                        <li class="essencials hidden">
+                            <a id="flipH" href="#flipH" class="" title="Flip Horizontal" role="button"><i
+                                   class="fa fa-arrows-h fa-2x"></i></a>
+                        </li>
+                        <li class="essencials hidden">
+                            <a id="flipV" href="#flipV" title="Flip Vertical" role="button"><i
+                                   class="fa fa-arrows-v fa-2x"></i></a>
+                        </li>
+
+                        <!--Adjustments-->
+                        <li class="menu filters">
+                            <a id="menuFilter" href="#adjust" data-toggle="tooltip" data-placement="right"
+                               data-title="Filters"
+                               title="Adjustments">
+                                <i class="fa fa-sliders fa-2x"></i>
+                                <h5 class="hidden">Filters</h5>
+                            </a>
+
+                        </li>
+                        <!--Adjustments properties-->
+                        <li class="filters hidden">
+                            <select id="selFilter" class="form-control text-center">
+                                <option value="none">Filter</option>
+                                <option value="bri">Brightness</option>
+                                <option value="blu">Blur</option>
+                                <option value="cli">Clip</option>
+                                <option value="contr">Contrast</option>
+                                <option value="exp">Exposure</option>
+                                <option value="gam">Gamma</option>
+                                <option value="hu">Hue</option>
+                                <option value="noi">Noise</option>
+                                <option value="sat">Saturation</option>
+                                <option value="sep">Sepia</option>
+                                <option value="sha">Sharpen</option>
+                                <option value="vib">Vibrance</option>
+                            </select>
+                        </li>
+                        <li id="showF1" class="hidden rang">
+                            <h4 class="text-center">[-100,100]-><span></span></h4>
+                            <input id="bri" type="range" value="0" max="100" min="-100" step="1" />
+                        </li>
+                        <li id="showF2" class="hidden rang">
+                            <h4 class="text-center">[0,100]-></h4>
+                            <input id="blu" type="range" value="0" max="100" min="0" step="1" />
+                        </li>
+                        <li id="showF3" class="hidden rang">
+                            <h4 class="text-center">[0,100]-></h4>
+                            <input id="cli" type="range" value="0" max="100" min="0" step="1" />
+                        </li>
+                        <li id="showF4" class="hidden rang">
+                            <h4 class="text-center">[-100,100]-></h4>
+                            <input id="contr" type="range" value="0" max="100" min="-100" step="1" />
+                        </li>
+                        <li id="showF5" class="hidden rang">
+                            <h4 class="text-center">[-100,100]-></h4>
+                            <input id="exp" type="range" value="0" max="100" min="-100" step="1" />
+                        </li>
+                        <li id="showF6" class="hidden rang">
+                            <h4 class="text-center">[0,100]-></h4>
+                            <input id="gam" type="range" value="0" max="100" min="0" step="1" />
+                        </li>
+                        <li id="showF7" class="hidden rang">
+                            <h4 class="text-center">[0,100]-></h4>
+                            <input id="hu" type="range" value="0" max="100" min="0" step="1" />
+                        </li>
+                        <li id="showF8" class="hidden rang">
+                            <h4 class="text-center">[0,100]-></h4>
+                            <input id="noi" type="range" value="0" max="100" min="0" step="1" />
+                        </li>
+                        <li id="showF9" class="hidden rang">
+                            <h4 class="text-center">[-100,100]-></h4>
+                            <input id="sat" type="range" value="0" max="100" min="-100" step="1" />
+                        </li>
+                        <li id="showF10" class="hidden rang">
+                            <h4 class="text-center">[0,100]-></h4>
+                            <input id="sep" type="range" value="0" max="100" min="0" step="1" />
+                        </li>
+                        <li id="showF11" class="hidden rang">
+                            <h4 class="text-center">[0,100]-></h4>
+                            <input id="sha" type="range" value="0" max="100" min="0" step="1" />
+                        </li>
+                        <li id="showF12" class="hidden rang">
+                            <h4 class="text-center">[-100,100]-></h4>
+                            <input id="vib" type="range" value="0" max="100" min="-100" step="1" />
+                        </li>
+                        <!--Effects -->
+                        <li class="menu effects">
+                            <a id="menuEffect" href="#effects" data-toggle="tooltip" data-placement="right"
+                               data-title="Effects"
+                               title="Effects"><i class="fa fa-magic fa-2x"></i>
+                                <h5 class="hidden">Effects</h5>
+                            </a>
+                        </li>
+                        <!--Effects properties -->
+                        <li class="effects hidden">
+                            <select id="selEffect" class="form-control text-center">
+                                <option value="none">Effect</option>
+                                <option value="ef1">Vintage</option>
+                                <option value="ef2">Lomo</option>
+                                <option value="ef3">Clarity</option>
+                                <option value="ef4">Sin City</option>
+                                <option value="ef5">Surrise</option>
+                                <option value="ef6">Cross Process</option>
+                                <option value="ef7">Orange Peel</option>
+                                <option value="ef8">Love</option>
+                                <option value="ef9">Grungy</option>
+                                <option value="ef10">Jarques</option>
+                                <option value="ef11">Pinhole</option>
+                                <option value="ef12">Old Boot</option>
+                                <option value="ef13">Glowing Sun</option>
+                                <option value="ef14">HazyDays</option>
+                                <option value="ef15">Her Majesty</option>
+                                <option value="ef16">Nostalgia</option>
+                                <option value="ef17">hemingway</option>
+                                <option value="ef18">Concentrate</option>
+                                <option value="ef19">Greyscale</option>
+                            </select>
+                        </li>
+                        <!--Text-->
+                        <li class="menu text hidden">
+                            <a id="menuText" href="#text" data-toggle="modal" data-target="#textModal" title="Text">
+                                <i class="fa fa-pencil fa-2x"></i>
+                            </a>
+                        </li>
+                        <!--Menu full screen-->
+                        <li class="menu">
+                            <a id="full" href="#full" data-toggle="tooltip" data-placement="right"
+                               title="Full Screen"><i class="fa fa-expand fa-2x"></i>
+                                <h5 class="hidden">FullScreen</h5>
+                            </a>
+                        </li>
+                        <!-- Opcao de Zoom-->
+
+                        <li class="menu">
+                            <input class="myZoom" type="range" min="0" max="2" step="0.1" value="1" />
+                        </li>
+
+                        <li class="menu">
+                            <p class="valZoom"><span></span></p>
+                        </li>
+
+                        <!-- btn feedback and value of range -->
+
+                        <li class="res hidden">
+                            <span>0</span>
+                        </li>
+                        <li class="feedback hidden">
+                            <a class="feed apl" href="#" title="Apply">
+                                <i class="fa fa-check fa-2x"></i>
+                            </a>
+                        </li>
+                        <li class="feedback hidden">
+                            <a class="feed rej" href="#" title="Cancel">
+                                <i class="fa fa-times fa-2x"></i>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!--Modals / popup -->
+        <section class="modal fade" id="ls" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span
+                                  aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-image"></i> Image Source</h4>
+                    </div>
+                    <div class="modal-body container-fluid">
+
+                        <ul class="nav navbar-nav">
+                            <li data-toggle="tooltip" data-placement="bottom" title="Upload">
+                                <a href="#" data-toggle="modal" data-target="#load" data-dismiss="modal"><i
+                                       class="fa fa-upload fa-2x"></i>
+                                </a>
+                            </li>
+                            <li data-toggle="tooltip" data-placement="bottom" title="WebCam">
+                                <a href="#" data-toggle="modal" data-target="#shot" data-dismiss="modal"><i
+                                       class="fa fa-camera fa-2x"></i></a>
+                            </li>
+
+                            <li data-toggle="tooltip" data-placement="bottom" title="External" class="hidden">
+                                <a href="#" data-toggle="modal" data-target="#external" data-dismiss="modal"><i
+                                       class="fa fa-globe fa-2x"></i></a>
+                            </li>
+                            <li data-toggle="tooltip" data-placement="bottom" title="Sample">
+                                <a href="#sample" id="sample" data-dismiss="modal"><i
+                                       class="fa fa-file-image-o fa-2x"></i>
+                                </a>
+                            </li>
+                            <li id="b1" data-toggle="tooltip" data-placement="right" title="Download">
+                                <a id="prep" href="#download" data-dismiss="modal"><i
+                                       class="fa fa-download fa-2x"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="modal fade" id="load" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span
+                                  aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Image Upload</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="fileUpload btn btn-primary">
+                            <span>Upload</span>
+                            <input class="upload" type="file" id="files" />
+                        </div>
+                        <output id="list">
+                            <img class="img-responsive hidden" id="preview" />
+                        </output>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button id="confirmUp" type="button" class="btn btn-primary hidden confirm"
+                                data-dismiss="modal">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="modal fade" id="shot" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span
+                                  aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title text-center" id="myModalLabel">Camera Shot</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="sc" class="row hidden">
+                            <div class="col-md-12">
+                                <h4 class="text-center text-success">Camera</h4>
+                                <video id="video" autoplay width="540" height="380"></video>
+                            </div>
+                        </div>
+                        <div id="si" class="row hidden last">
+                            <div class="col-md-12">
+                                <h4 class="text-center text-success">Snap Shot</h4>
+                                <img id="res" class="img-responsive" src="" />
+                                <canvas id="canvas" width="640" height="480" class="hidden"></canvas>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-md-4 col-md-offset-4">
+                                <div id="btng" class="btn-group">
+                                    <button id="begin" class="btn btn-primary center">Camera On</button>
+                                </div>
+                                <div class="btn-group opt2 hidden">
+                                    <button id="capture-btn" class="btn btn-primary center">Snapshot</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button id="confirm-shot" type="button" class="btn btn-primary hidden confirm"
+                                data-dismiss="modal">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="modal fade" id="external" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span
+                                  aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title text-center" id="myModalLabel">Image by URL</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4 class="text-center text-success last">URL</h4>
+                        <div class="row last">
+                            <div class="col-md-12">
+                                <img id="img-url" class="img-responsive center hidden" src="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <input type="url" class="form-control last" id="url-input"
+                                       placeholder="http://exemple.com">
+                                <button id="btn-url" type="button" class="btn btn-primary center">Preview</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button id="confirmURL" type="button" class="btn btn-primary hidden confirm"
+                                data-dismiss="modal">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="modal fade" id="about" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span
+                                  aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title text-center" id="myModalLabel">About</h4>
+                    </div>
+                    <div class="modal-body">
+                        PhotoCanvas by Agostinho Monteiro - Beta Final
+                        <br />HTML5 API: File Reader API, getUsermedia(to access webcamera), canvas
+                        <br />Frameworks:
+                        <br />- <a href="http://camanjs.com/" target="_blank">CamanJS</a> to Apply filters and Effects;
+                        <br />- <a href="http://getbootstrap.com" target="_blank">Twitter Bootstrap 3</a> and <br /> -
+                        <a href="http://jquery.com/" target="_blank">jQuery</a> to GUI
+                        <br /><a href="http://hammerjs.github.io" target="_blank">HammerJS</a> to Touch events
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary hidden confirm"
+                                data-dismiss="modal">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="modal fade" id="cropModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span
+                                  aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title text-center" id="myModalLabel">Crop Preview</h4>
+                    </div>
+                    <div class="modal-body">
+                        <img id="prevModal" />
+                    </div>
+                    <div class="modal-footer">
+                        <button id="cancelCrop" type="button" class="btn btn-default hidden"
+                                data-dismiss="modal">Cancel</button>
+                        <button id="confirmCrop" type="button" class="btn btn-primary"
+                                data-dismiss="modal">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="modal fade  bs-example-modal-sm" id="textModal" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog  modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span
+                                  aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title text-center" id="myModalLabel">Text Properties</h4>
+                    </div>
+                    <div class="modal-body navbar-inverse" style="border-radius:10px;">
+                        <h5 class="text-center text-primary">Font:</h5>
+                        <select id='fontSelect' class="form-control text-center">
+                            <option class="text-center" value='Arial'>Arial</option>
+                            <option value='Comic Sans' selected>Comic Sans</option>
+                            <option value='Lucida Sans'>Lucida Sans</option>
+                            <option value='Helvetica'>Helvetica</option>
+                            <option value='Palatino'>Palatino</option>
+                        </select>
+                        <h5 class="text-center text-primary">Size: </h5>
+                        <select id='sizeSelect' class="form-control text-center">
+                            <option class="text-center" value='32'>32 px</option>
+                            <option value='48' selected>48 px</option>
+                            <option value='64'>64 px</option>
+                            <option value='128'>128 px</option>
+                        </select>
+                        <h5 class="text-center text-primary">Text fill color: </h5>
+                        <select id='fillStyleSelect' class="form-control text-center">
+                            <option class="text-center" value='rgba(255,0,0,0.5)'>semi-transparent red</option>
+                            <option value='green'>green</option>
+                            <option value='rgba(0,0,255,0.5)'>semi-transparent blue</option>
+                            <option value='orange'>orange</option>
+                            <option value='rgba(100,140,230,0.5)'>semi-transparent cornflowerblue</option>
+                            <option value='rgba(218,165,32,0.5)' selected>semi-transparent goldenrod</option>
+                            <option value='navy'>navy</option>
+                            <option value='purple'>purple</option>
+                        </select>
+                        <h5 class="text-center text-primary">Fill:<input id='fillCheckbox' type='checkbox' checked />
+                        </h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="confirmOK" type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </header>
+    <!-- main content-->
+    <main id="content" class="container" role="main">
+        <article>
+            <div class="container">
+                <canvas id="cvs" width="800" height="400" data-caman-hidpi-disabled="true"></canvas>
+                <canvas id="cvf" data-caman-hidpi-disabled="true" class="hidden"></canvas>
+                <div id="overlay" class="hidden"></div>
+            </div>
+            <textarea class="hidden" id="seal"></textarea><button id="cle" class="hidden btn btn-primary">Clear</button>
+        </article>
+        <img id="fi" class="hidden" />
+        <img id="icvs" class="hidden" />
+        <img id="original" class="hidden" />
+        <img id="test" class="hidden" />
+    </main>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="js/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/camanjs/caman.full.min.js"></script>
+    <script src="js/hammer.min.js"></script>
+    <script src="js/snap.js"></script>
+    <script src="js/filters_effects.js"></script>
+    <script src="js/text.js"></script>
+    <script src="js/basics.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        Caman.DEBUG = false;
+    </script>
+</body>
+
+</html>
